@@ -1,0 +1,42 @@
+[
+  {
+    "content": "Backend: Add main / route for health check",
+    "status": "completed"
+  },
+  {
+    "content": "Backend: Configure CORS properly (use environment variable)",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Sort events by event_date_start instead of created_at",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Sort employee tasks by due_date instead of created_at",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Display event created date/time in event list",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Fix button double-click issue causing duplicate entries",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Make notifications clickable - redirect to related page",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Restrict team members from editing Head's comments field",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend: Display task assigned date/time (created_at)",
+    "status": "completed"
+  },
+  {
+    "content": "Test all fixes end-to-end",
+    "status": "completed"
+  }
+]
