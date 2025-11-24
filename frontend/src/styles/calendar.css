@@ -1,0 +1,130 @@
+/* Custom styles for react-big-calendar */
+.rbc-calendar {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.rbc-header {
+  padding: 12px 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1E293B;
+  border-bottom: 2px solid #E2E8F0;
+  background-color: #F8FAFC;
+}
+
+.rbc-today {
+  background-color: #F0FDFA;
+}
+
+.rbc-off-range-bg {
+  background-color: #F8FAFC;
+}
+
+.rbc-date-cell {
+  padding: 8px;
+}
+
+.rbc-event {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.rbc-event:hover {
+  opacity: 0.8;
+}
+
+.rbc-event-label {
+  font-size: 0.75rem;
+}
+
+.rbc-toolbar {
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+}
+
+.rbc-toolbar button {
+  padding: 8px 16px;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  background-color: white;
+  color: #334155;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #F1F5F9;
+  border-color: #00A896;
+}
+
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+  background-color: #00A896;
+  border-color: #00A896;
+  color: white;
+}
+
+.rbc-toolbar-label {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #1E293B;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.rbc-month-view {
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rbc-day-bg {
+  border-left: 1px solid #E2E8F0;
+}
+
+.rbc-month-row {
+  border-top: 1px solid #E2E8F0;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: 1px solid #F1F5F9;
+}
+
+.rbc-time-header-content {
+  border-left: 1px solid #E2E8F0;
+}
+
+.rbc-current-time-indicator {
+  background-color: #00A896;
+  height: 2px;
+}
+
+/* Make calendar more mobile friendly */
+@media (max-width: 768px) {
+  .rbc-toolbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .rbc-toolbar-label {
+    order: -1;
+    font-size: 1rem;
+  }
+  
+  .rbc-header {
+    font-size: 0.75rem;
+    padding: 8px 4px;
+  }
+  
+  .rbc-event {
+    font-size: 0.75rem;
+    padding: 2px 4px;
+  }
+}

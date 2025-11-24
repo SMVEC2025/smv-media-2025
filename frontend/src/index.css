@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Brand Colors */
+    --color-primary: #00A896;
+    --color-primary-light: #02C9B3;
+    --color-primary-dark: #028174;
+    
+    /* Secondary/Accent Colors */
+    --color-accent: #FF6F61;
+    --color-accent-light: #FF8A7F;
+    --color-accent-dark: #E65A4D;
+    
+    /* Neutral Palette */
+    --color-slate-900: #1E293B;
+    --color-slate-700: #334155;
+    --color-slate-500: #64748B;
+    --color-slate-300: #CBD5E1;
+    --color-slate-100: #F1F5F9;
+    --color-slate-50: #F8FAFC;
+    
+    /* Semantic Colors */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+    --color-info: #3B82F6;
+    
+    /* Status Colors */
+    --status-created: #94A3B8;
+    --status-scheduled: #3B82F6;
+    --status-in-progress: #F59E0B;
+    --status-delivery: #8B5CF6;
+    --status-closed: #10B981;
+    
+    /* Priority Colors */
+    --priority-normal: #64748B;
+    --priority-high: #F59E0B;
+    --priority-vip: #EF4444;
+    
+    /* Task Type Colors */
+    --task-photo: #06B6D4;
+    --task-video: #8B5CF6;
+    --task-editing: #EC4899;
+    
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-slate-50 text-slate-700 font-sans;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    @apply text-slate-900;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .font-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
