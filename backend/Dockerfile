@@ -17,4 +17,4 @@ EXPOSE 8000
 
 # Start the FastAPI backend (adjust entry file if needed)
 # If your file is server.py, then use backend.server:app
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "backend.server:app", "--host", "0.0.0.0", "--port", "8000"]
