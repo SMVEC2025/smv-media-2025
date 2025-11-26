@@ -22,7 +22,7 @@ const Login = () => {
       toast.success('Login successful', {
         description: `Welcome back, ${user.name}!`
       });
-      
+
       // Redirect based on role
       if (user.role === 'team_member') {
         navigate('/my-tasks');
@@ -58,7 +58,7 @@ const Login = () => {
                 data-testid="login-email-input"
                 type="email"
                 placeholder="you@example.com"
-                className="mt-2 w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#00A896] focus:border-transparent transition-all duration-200"
+                className="mt-2 w-full px-4 py-2.5 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#37429c] focus:border-transparent transition-all duration-200"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -74,7 +74,7 @@ const Login = () => {
                 data-testid="login-password-input"
                 type="password"
                 placeholder="••••••••"
-                className="mt-2 w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#00A896] focus:border-transparent transition-all duration-200"
+                className="mt-2 w-full px-4 py-3.5 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#37429c] focus:border-transparent transition-all duration-200"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -84,18 +84,14 @@ const Login = () => {
             <Button
               data-testid="login-submit-button"
               type="submit"
-              className="w-full bg-[#00A896] hover:bg-[#02C9B3] text-white font-medium px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full bg-[#37429c] hover:bg-[#b49749] text-white font-medium px-6 py-2.5 rounded-lg shadow-md  transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
               disabled={loading}
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
 
-          <div className="text-center">
-            <p className="text-sm text-slate-600">
-              Demo accounts: admin@media.com (admin) | head@media.com (media_head) | member@media.com (team_member)
-            </p>
-          </div>
+
         </div>
       </div>
 
@@ -103,12 +99,12 @@ const Login = () => {
       <div
         className="hidden lg:block bg-cover bg-center"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1614270248358-0abb9675074b)'
+          backgroundImage: 'url(https://arts.smvec.ac.in/assets/img/image/DJI_0981.webp)'
         }}
       >
-        <div className="w-full h-full bg-gradient-to-br from-[#00A896]/80 to-[#FF6F61]/60 flex items-center justify-center p-12">
+        <div className="w-full h-full bg-gradient-to-br from-[black]/70 to-[black]/50 flex items-center justify-center p-12 ">
           <div className="text-white text-center">
-            <h2 className="text-5xl font-bold mb-4 font-heading">Capture Every Moment</h2>
+            <h2 className="text-5xl font-bold mb-4 font-heading text-[white]">Capture Every Moment</h2>
             <p className="text-xl opacity-90">
               Professional event management for creative teams
             </p>

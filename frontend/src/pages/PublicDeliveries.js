@@ -45,7 +45,7 @@ const PublicDeliveries = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-600">Loading deliveries...</p>
         </div>
       </div>
@@ -119,7 +119,7 @@ const PublicDeliveries = () => {
                 className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
                 onClick={() => window.open(item.deliverable_link, '_blank')}
               >
-                <div className="aspect-video bg-gradient-to-br from-[#00A896]/20 to-[#FF6F61]/20 relative overflow-hidden flex items-center justify-center">
+                <div className="aspect-video bg-gradient-to-br from-[#37429c]/20 to-[#FF6F61]/20 relative overflow-hidden flex items-center justify-center">
                   <div className="absolute inset-0 bg-slate-200 group-hover:bg-slate-300 transition-colors duration-300"></div>
                   <div className="relative z-10 text-center">
                     <ExternalLink className="w-12 h-12 text-slate-600 mx-auto mb-2" />

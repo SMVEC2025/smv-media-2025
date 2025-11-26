@@ -38,7 +38,7 @@ const Dashboard = () => {
       <Layout>
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-600">Loading dashboard...</p>
           </div>
         </div>
@@ -64,7 +64,7 @@ const Dashboard = () => {
                   <p className="text-sm text-slate-600">Upcoming Events</p>
                   <p className="text-3xl font-bold text-slate-900 mt-2">{stats?.upcoming_events || 0}</p>
                 </div>
-                <Calendar className="w-10 h-10 text-[#00A896]" />
+                <Calendar className="w-10 h-10 text-[#37429c]" />
               </div>
             </CardContent>
           </Card>
@@ -125,7 +125,7 @@ const Dashboard = () => {
                   <div
                     key={event.id}
                     data-testid={`event-card-${event.id}`}
-                    className="bg-white rounded-lg border border-slate-200 p-4 hover:border-[#00A896] transition-colors duration-200 cursor-pointer"
+                    className="bg-white rounded-lg border border-slate-200 p-4 hover:border-[#37429c] transition-colors duration-200 cursor-pointer"
                     onClick={() => window.location.href = `/events/${event.id}`}
                   >
                     <div className="flex items-start justify-between">

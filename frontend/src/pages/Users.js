@@ -135,7 +135,7 @@ const Users = () => {
     const colors = {
       admin: 'bg-[#EF4444]',
       media_head: 'bg-[#F59E0B]',
-      team_member: 'bg-[#00A896]'
+      team_member: 'bg-[#37429c]'
     };
     return colors[role] || 'bg-slate-500';
   };
@@ -157,7 +157,7 @@ const Users = () => {
       <Layout>
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-600">Loading users...</p>
           </div>
         </div>
@@ -176,7 +176,7 @@ const Users = () => {
           </div>
           <Button
             data-testid="create-user-button"
-            className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+            className="bg-[#37429c] hover:bg-[#b49749] text-white"
             onClick={() => handleOpenDialog()}
           >
             <Plus className="w-5 h-5 mr-2" />
@@ -241,7 +241,7 @@ const Users = () => {
                     : 'Create your first user to get started'}
                 </p>
                 <Button
-                  className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+                  className="bg-[#37429c] hover:bg-[#b49749] text-white"
                   onClick={() => handleOpenDialog()}
                 >
                   <Plus className="w-5 h-5 mr-2" />
@@ -269,7 +269,7 @@ const Users = () => {
                     <TableRow key={user.id} data-testid={`user-row-${user.id}`}>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-[#00A896] text-white flex items-center justify-center font-semibold text-sm">
+                          <div className="w-8 h-8 rounded-full bg-[#37429c] text-white flex items-center justify-center font-semibold text-sm">
                             {user.name.charAt(0).toUpperCase()}
                           </div>
                           <span className="font-medium">{user.name}</span>
@@ -438,7 +438,7 @@ const Users = () => {
               Cancel
             </Button>
             <Button
-              className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
               onClick={handleSubmit}
             >
               {editingUser ? 'Update' : 'Create'} User

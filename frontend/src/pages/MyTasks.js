@@ -90,7 +90,7 @@ const MyTasks = () => {
       <Layout>
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-600">Loading tasks...</p>
           </div>
         </div>
@@ -165,7 +165,7 @@ const MyTasks = () => {
                   <div
                     key={task.id}
                     data-testid={`task-item-${task.id}`}
-                    className="bg-white rounded-lg border border-slate-200 p-4 hover:border-[#00A896] transition-colors duration-200"
+                    className="bg-white rounded-lg border border-slate-200 p-4 hover:border-[#37429c] transition-colors duration-200"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -200,7 +200,7 @@ const MyTasks = () => {
                             href={task.deliverable_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-[#00A896] hover:underline mt-2 inline-block"
+                            className="text-sm text-[#37429c] hover:underline mt-2 inline-block"
                           >
                             View Deliverable
                           </a>
@@ -298,7 +298,7 @@ const MyTasks = () => {
             </Button>
             <Button
               data-testid="submit-dialog-button"
-              className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
               onClick={handleUpdateTask}
               disabled={updating}
             >

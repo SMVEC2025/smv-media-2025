@@ -7,8 +7,8 @@
 @layer base {
   :root {
     /* Primary Brand Colors */
-    --color-primary: #00A896;
-    --color-primary-light: #02C9B3;
+    --color-primary: #37429c;
+    --color-primary-light: #b49749;
     --color-primary-dark: #028174;
     
     /* Secondary/Accent Colors */

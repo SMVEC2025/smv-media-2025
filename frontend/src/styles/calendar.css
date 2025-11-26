@@ -62,13 +62,13 @@
 
 .rbc-toolbar button:hover {
   background-color: #F1F5F9;
-  border-color: #00A896;
+  border-color: #37429c;
 }
 
 .rbc-toolbar button:active,
 .rbc-toolbar button.rbc-active {
-  background-color: #00A896;
-  border-color: #00A896;
+  background-color: #37429c;
+  border-color: #37429c;
   color: white;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .rbc-current-time-indicator {
-  background-color: #00A896;
+  background-color: #37429c;
   height: 2px;
 }
 

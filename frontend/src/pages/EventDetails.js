@@ -147,7 +147,7 @@ const EventDetails = () => {
       <Layout>
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-600">Loading event...</p>
           </div>
         </div>
@@ -192,7 +192,7 @@ const EventDetails = () => {
               </p>
             </div>
             <Button
-              className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
               onClick={() => setIsStatusDialogOpen(true)}
             >
               <Edit className="w-4 h-4 mr-2" />
@@ -270,7 +270,7 @@ const EventDetails = () => {
                   <CardTitle>Tasks ({tasks.length})</CardTitle>
                   <Button
                     size="sm"
-                    className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+                    className="bg-[#37429c] hover:bg-[#b49749] text-white"
                     onClick={() => setIsTaskDialogOpen(true)}
                   >
                     <Plus className="w-4 h-4 mr-2" />
@@ -290,7 +290,7 @@ const EventDetails = () => {
                     {tasks.map((task) => (
                       <div
                         key={task.id}
-                        className="flex items-center justify-between p-4 rounded-lg border border-slate-200 hover:border-[#00A896] transition-colors"
+                        className="flex items-center justify-between p-4 rounded-lg border border-slate-200 hover:border-[#37429c] transition-colors"
                       >
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
@@ -363,7 +363,7 @@ const EventDetails = () => {
                         </div>
                         <Button
                           size="sm"
-                          className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+                          className="bg-[#37429c] hover:bg-[#b49749] text-white"
                           onClick={() => window.open(task.deliverable_link, '_blank')}
                         >
                           View Deliverable
@@ -496,7 +496,7 @@ const EventDetails = () => {
               Cancel
             </Button>
             <Button
-              className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
               onClick={handleAssignTask}
             >
               Assign Task
@@ -547,7 +547,7 @@ const EventDetails = () => {
               Cancel
             </Button>
             <Button
-              className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
               onClick={handleAllocateEquipment}
             >
               Allocate
@@ -569,8 +569,8 @@ const EventDetails = () => {
                 onClick={() => handleStatusChange(status)}
                 className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
                   event.status === status
-                    ? 'border-[#00A896] bg-[#00A896]/10'
-                    : 'border-slate-200 hover:border-[#00A896]'
+                    ? 'border-[#37429c] bg-[#37429c]/10'
+                    : 'border-slate-200 hover:border-[#37429c]'
                 }`}
               >
                 <Badge className={`${getStatusColor(status)} text-white text-xs mb-1`}>

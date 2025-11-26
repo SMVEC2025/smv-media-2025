@@ -56,7 +56,7 @@ const MyCalendar = () => {
 
   const eventStyleGetter = (event) => {
     const task = event.resource;
-    let backgroundColor = '#00A896'; // Default teal
+    let backgroundColor = '#37429c'; // Default teal
 
     // Color by task type
     if (task.type === 'photo') {
@@ -98,7 +98,7 @@ const MyCalendar = () => {
       <Layout>
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-600">Loading calendar...</p>
           </div>
         </div>
@@ -133,7 +133,7 @@ const MyCalendar = () => {
                 <span className="text-sm text-slate-600">Editing</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-[#00A896]"></div>
+                <div className="w-4 h-4 rounded bg-[#37429c]"></div>
                 <span className="text-sm text-slate-600">Other</span>
               </div>
             </div>
@@ -224,7 +224,7 @@ const MyCalendar = () => {
                             href={selectedTask.deliverable_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#00A896] hover:underline text-sm"
+                            className="text-[#37429c] hover:underline text-sm"
                           >
                             View Link
                           </a>
@@ -234,7 +234,7 @@ const MyCalendar = () => {
 
                     <button
                       onClick={() => window.location.href = `/my-tasks`}
-                      className="w-full mt-4 px-4 py-2 bg-[#00A896] hover:bg-[#02C9B3] text-white rounded-lg font-medium transition-colors"
+                      className="w-full mt-4 px-4 py-2 bg-[#37429c] hover:bg-[#b49749] text-white rounded-lg font-medium transition-colors"
                     >
                       Go to My Tasks
                     </button>

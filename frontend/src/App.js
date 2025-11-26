@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-600">Loading...</p>
         </div>
       </div>
@@ -151,7 +151,7 @@ const AppRoutes = () => {
             <div className="text-center">
               <h1 className="text-4xl font-bold text-slate-900 mb-4">403</h1>
               <p className="text-slate-600 mb-6">You don't have permission to access this page.</p>
-              <a href="/" className="text-[#00A896] hover:underline">Go to Home</a>
+              <a href="/" className="text-[#37429c] hover:underline">Go to Home</a>
             </div>
           </div>
         }

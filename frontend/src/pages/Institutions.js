@@ -132,7 +132,7 @@ const Institutions = () => {
       <Layout>
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#00A896] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#37429c] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-600">Loading institutions...</p>
           </div>
         </div>
@@ -151,7 +151,7 @@ const Institutions = () => {
           </div>
           <Button
             data-testid="create-institution-button"
-            className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+            className="bg-[#37429c] hover:bg-[#b49749] text-white"
             onClick={() => handleOpenDialog()}
           >
             <Plus className="w-5 h-5 mr-2" />
@@ -236,7 +236,7 @@ const Institutions = () => {
                     : 'Create your first institution to get started'}
                 </p>
                 <Button
-                  className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+                  className="bg-[#37429c] hover:bg-[#b49749] text-white"
                   onClick={() => handleOpenDialog()}
                 >
                   <Plus className="w-5 h-5 mr-2" />
@@ -382,7 +382,7 @@ const Institutions = () => {
                 type="checkbox"
                 checked={formData.is_active}
                 onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                className="w-4 h-4 text-[#00A896] border-slate-300 rounded focus:ring-[#00A896]"
+                className="w-4 h-4 text-[#37429c] border-slate-300 rounded focus:ring-[#37429c]"
               />
               <Label htmlFor="is_active" className="text-sm font-medium text-slate-700">
                 Active
@@ -394,7 +394,7 @@ const Institutions = () => {
               Cancel
             </Button>
             <Button
-              className="bg-[#00A896] hover:bg-[#02C9B3] text-white"
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
               onClick={handleSubmit}
             >
               {editingInstitution ? 'Update' : 'Create'} Institution

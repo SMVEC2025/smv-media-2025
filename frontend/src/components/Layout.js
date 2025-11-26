@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
               <Menu className="w-6 h-6" />
             </Button>
             <h1 className="text-xl font-bold text-slate-900 font-heading">MediaHub</h1>
-            <Badge className="bg-[#00A896] text-white text-xs">
+            <Badge className="bg-[#37429c] text-white text-xs">
               {user?.role?.split('_')[0]}
             </Badge>
           </div>

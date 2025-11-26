@@ -11,7 +11,7 @@
 - 🎯 **CURRENT STATUS**: Application is production-ready with 97.5% test pass rate across all features.
 - 🎯 **NEXT GOAL**: Production readiness enhancements (pagination, delete operations, performance optimization, security hardening).
 - Core flows implemented: Dashboard (admin/media_head), My Tasks (team_member), Public Deliveries (no auth), Events CRUD, Event Details with task assignment, authentication with JWT, complete admin management, calendar views.
-- Design: modern creative look per guidelines (Primary Teal #00A896, Accent Coral #FF6F61, Slate neutrals; Space Grotesk + Inter; Shadcn UI only).
+- Design: modern creative look per guidelines (Primary Teal #37429c, Accent Coral #FF6F61, Slate neutrals; Space Grotesk + Inter; Shadcn UI only).
 - Tech: FastAPI + MongoDB (Motor), React + Tailwind + Shadcn UI; all API under /api; backend bind 0.0.0.0:8001; UUID IDs; timezone-aware datetimes.
 - Auth: JWT-based authentication with bcrypt password hashing; backend role guards enforced.
 
@@ -56,7 +56,7 @@
 
 1. ✅ **Navigation Sidebar** (`/app/frontend/src/components/Sidebar.js`)
    - Role-based menu items (Admin: all pages, Media Head: Dashboard/Events/Calendar, Team Member: My Tasks/My Calendar)
-   - Active state highlighting with teal background (#00A896)
+   - Active state highlighting with teal background (#37429c)
    - User profile display with avatar (first letter in teal circle)
    - Mobile responsive with overlay and hamburger toggle
    - Logout button at bottom
@@ -232,7 +232,7 @@
      - Color-coded by priority and status:
        - VIP Priority: Red (#EF4444)
        - High Priority: Orange (#F59E0B)
-       - Normal: Teal (#00A896)
+       - Normal: Teal (#37429c)
        - Closed: Green (#10B981)
      - Custom toolbar with Today/Back/Next controls
      - Click event → Display details in sidebar
@@ -257,7 +257,7 @@
        - Photography: Cyan (#06B6D4)
        - Videography: Purple (#8B5CF6)
        - Editing: Pink (#EC4899)
-       - Other: Teal (#00A896)
+       - Other: Teal (#37429c)
      - Completed tasks shown with lower opacity (0.5)
      - Click task → Display details in sidebar
    - **Task Details Sidebar**:

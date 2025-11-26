@@ -111,7 +111,7 @@ const NotificationBell = () => {
   const getNotificationIcon = (type) => {
     // Return different colors based on notification type
     const colors = {
-      task_assigned: 'bg-[#00A896]',
+      task_assigned: 'bg-[#37429c]',
       task_completed: 'bg-[#10B981]',
       event_status_changed: 'bg-[#3B82F6]',
       event_created: 'bg-[#F59E0B]'
@@ -147,7 +147,7 @@ const NotificationBell = () => {
               size="sm"
               variant="ghost"
               onClick={handleMarkAllRead}
-              className="text-[#00A896] hover:text-[#02C9B3] text-xs"
+              className="text-[#37429c] hover:text-[#b49749] text-xs"
             >
               Mark all read
             </Button>
@@ -167,7 +167,7 @@ const NotificationBell = () => {
                 data-testid={`notification-${notif.id}`}
                 onClick={() => handleNotificationClick(notif)}
                 className={`p-4 border-b border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors ${
-                  !notif.is_read ? 'bg-[#00A896]/5' : ''
+                  !notif.is_read ? 'bg-[#37429c]/5' : ''
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -178,7 +178,7 @@ const NotificationBell = () => {
                         {notif.title}
                       </p>
                       {!notif.is_read && (
-                        <div className="w-2 h-2 rounded-full bg-[#00A896]"></div>
+                        <div className="w-2 h-2 rounded-full bg-[#37429c]"></div>
                       )}
                     </div>
                     <p className="text-sm text-slate-600 mb-1">{notif.message}</p>
