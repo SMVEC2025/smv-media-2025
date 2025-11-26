@@ -78,3 +78,7 @@ dmypy.json
 # Environment files
 *.env
 *.env.*
+.env
+.emergent
+/test_reports
+/tests
