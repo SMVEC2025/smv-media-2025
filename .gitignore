@@ -79,6 +79,18 @@ dmypy.json
 *.env
 *.env.*
 .env
-.emergent
-/test_reports
-/tests
+
+
+.emergent/
+tests/
+test_reports/
+
+# Ignore example env files
+.env.backend.example
+.env.frontend.example
+
+# Ignore documentation not needed in repo
+ENV_SETUP_GUIDE.md
+DEPLOYMENT_GUIDE.md
+design_guidelines.md
+test_result.md
