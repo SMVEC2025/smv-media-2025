@@ -13,6 +13,8 @@ import Equipment from './pages/Equipment';
 import Users from './pages/Users';
 import CalendarView from './pages/CalendarView';
 import MyCalendar from './pages/MyCalendar';
+import Employees from './pages/Employees';
+import Tasks from './pages/Tasks';
 import './App.css';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
@@ -125,6 +127,24 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute allowedRoles={['team_member']}>
             <MyCalendar />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/employees"
+        element={
+          <ProtectedRoute allowedRoles={['admin', 'media_head']}>
+            <Employees />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/tasks"
+        element={
+          <ProtectedRoute allowedRoles={['admin', 'media_head']}>
+            <Tasks />
           </ProtectedRoute>
         }
       />

@@ -30,8 +30,10 @@ const Sidebar = ({ isOpen, onClose }) => {
     // Common items for admin and media_head
     ...(isMediaHead ? [
       { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard', testId: 'nav-dashboard' },
+      { name: 'Tasks', icon: CheckSquare, path: '/tasks', testId: 'nav-tasks' },
       { name: 'Events', icon: Calendar, path: '/events', testId: 'nav-events' },
       { name: 'Calendar', icon: Calendar, path: '/calendar', testId: 'nav-calendar' },
+      { name: 'Employees', icon: Users, path: '/employees', testId: 'nav-employees' },
     ] : []),
     // Team member items
     ...(user?.role === 'team_member' ? [
@@ -131,7 +133,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Button
             data-testid="sidebar-logout-button"
             variant="ghost"
-            className="w-full justify-start text-slate-700 hover:bg-red-50 hover:text-red-600"
+            className="w-full justify-start text-slate-700 hover:bg-transparent hover:text-red-600"
             onClick={handleLogout}
           >
             <LogOut className="w-5 h-5 mr-3" />

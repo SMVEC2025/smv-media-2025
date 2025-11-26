@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import api, { getStatusColor, getPriorityColor, formatDate } from '../utils/api';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { Calendar, AlertCircle, CheckCircle, Clock } from 'lucide-react';
+import { Calendar, AlertCircle, CheckCircle, Clock, Plus } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import { toast } from 'sonner';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const { isAdmin, isMediaHead } = useAuth();
+
   const [stats, setStats] = useState(null);
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,8 +27,13 @@ const Dashboard = () => {
         api.get('/dashboard/stats'),
         api.get('/events')
       ]);
+      const sortedEvents = [...eventsRes.data].sort((a, b) => {
+        const aDate = a.created_at ? new Date(a.created_at) : 0;
+        const bDate = b.created_at ? new Date(b.created_at) : 0;
+        return bDate - aDate;
+      });
       setStats(statsRes.data);
-      setEvents(eventsRes.data.slice(0, 10));
+      setEvents(sortedEvents.slice(0, 10));
     } catch (error) {
       toast.error('Failed to load dashboard data', {
         description: error.response?.data?.detail || 'Please try again'
@@ -49,13 +59,22 @@ const Dashboard = () => {
   return (
     <Layout>
       <div className="p-6 lg:p-8 space-y-8">
-        {/* Page Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 font-heading">Dashboard</h1>
-          <p className="text-slate-600 mt-1">Overview of your media operations</p>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900 font-heading">Dashboard</h1>
+            <p className="text-slate-600 mt-1">Overview of your media operations</p>
+          </div>
+          {(isAdmin || isMediaHead) && (
+            <Button
+              className="bg-[#37429c] hover:bg-[#2f387f] text-white"
+              onClick={() => navigate('/events?create=new')}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Create Event
+            </Button>
+          )}
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card data-testid="stat-upcoming-events">
             <CardContent className="p-6">
@@ -106,7 +125,6 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Recent Events */}
         <Card data-testid="recent-events-card">
           <CardHeader>
             <CardTitle className="text-2xl font-semibold text-slate-900">Recent Events</CardTitle>

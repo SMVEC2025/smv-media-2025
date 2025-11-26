@@ -34,7 +34,7 @@ const MyCalendar = () => {
         .filter(task => task.due_date) // Only tasks with due dates
         .map((task) => ({
           id: task.id,
-          title: `${task.type.toUpperCase()}: ${task.event_title}`,
+          title: `${task.type.toUpperCase()}: ${task.event_title || 'Standalone Task'}`,
           start: new Date(task.due_date),
           end: new Date(task.due_date),
           resource: task // Store full task data
@@ -190,20 +190,22 @@ const MyCalendar = () => {
                         </Badge>
                       </div>
                       <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                        {selectedTask.event_title}
+                        {selectedTask.event_title || 'Standalone Task'}
                       </h3>
                     </div>
 
                     <div className="space-y-3 text-sm">
                       <div>
                         <p className="text-slate-600 font-medium">Institution</p>
-                        <p className="text-slate-900">{selectedTask.institution_name}</p>
+                        <p className="text-slate-900">{selectedTask.institution_name || 'No institution'}</p>
                       </div>
 
-                      <div>
-                        <p className="text-slate-600 font-medium">Event Date</p>
-                        <p className="text-slate-900">{formatDate(selectedTask.event_date)}</p>
-                      </div>
+                      {selectedTask.event_date && (
+                        <div>
+                          <p className="text-slate-600 font-medium">Event Date</p>
+                          <p className="text-slate-900">{formatDate(selectedTask.event_date)}</p>
+                        </div>
+                      )}
 
                       <div>
                         <p className="text-slate-600 font-medium">Task Due Date</p>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import ConfirmDialog from '../components/ConfirmDialog';
 import api, { getStatusColor, getPriorityColor, formatDate, formatDateTime } from '../utils/api';
@@ -14,6 +15,7 @@ import { Calendar, Plus, Filter, Search, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Events = () => {
+  const location = useLocation();
   const [events, setEvents] = useState([]);
   const [institutions, setInstitutions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +49,14 @@ const Events = () => {
   useEffect(() => {
     fetchData();
   }, [filters]);
+
+  // Open create dialog when arriving with ?create=new
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('create') === 'new') {
+      setIsCreateDialogOpen(true);
+    }
+  }, [location.search]);
 
   const fetchData = async () => {
     try {

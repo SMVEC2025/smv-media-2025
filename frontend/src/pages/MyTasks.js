@@ -161,63 +161,69 @@ const MyTasks = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                {tasks.map((task) => (
-                  <div
-                    key={task.id}
-                    data-testid={`task-item-${task.id}`}
-                    className="bg-white rounded-lg border border-slate-200 p-4 hover:border-[#37429c] transition-colors duration-200"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge
-                            data-testid="task-type-badge"
-                            className={`${getTaskTypeColor(task.type)} text-white`}
-                          >
-                            {task.type}
-                          </Badge>
-                          <Badge
-                            data-testid="task-status-badge"
-                            className={`${getStatusBadge(task.status)} text-white`}
-                          >
-                            {task.status.replace('_', ' ')}
-                          </Badge>
-                        </div>
-                        <h3 className="font-semibold text-slate-900">{task.event_title}</h3>
-                        <p className="text-sm text-slate-600 mt-1">
-                          {task.institution_name} • {formatDate(task.event_date)}
-                        </p>
-                        <p className="text-xs text-slate-500 mt-1">
-                          Assigned: {formatDateTime(task.created_at)}
-                        </p>
-                        {task.due_date && (
-                          <p className="text-sm text-slate-500 mt-1">
-                            Due: {formatDate(task.due_date)}
+                {tasks.map((task) => {
+                  const eventTitle = task.event_title || 'Standalone Task';
+                  const institution = task.institution_name || 'No institution';
+                  const eventDate = task.event_date ? formatDate(task.event_date) : 'No event date';
+
+                  return (
+                    <div
+                      key={task.id}
+                      data-testid={`task-item-${task.id}`}
+                      className="bg-white rounded-lg border border-slate-200 p-4 hover:border-[#37429c] transition-colors duration-200"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge
+                              data-testid="task-type-badge"
+                              className={`${getTaskTypeColor(task.type)} text-white`}
+                            >
+                              {task.type}
+                            </Badge>
+                            <Badge
+                              data-testid="task-status-badge"
+                              className={`${getStatusBadge(task.status)} text-white`}
+                            >
+                              {task.status.replace('_', ' ')}
+                            </Badge>
+                          </div>
+                          <h3 className="font-semibold text-slate-900">{eventTitle}</h3>
+                          <p className="text-sm text-slate-600 mt-1">
+                            {institution} - {eventDate}
                           </p>
-                        )}
-                        {task.deliverable_link && (
-                          <a
-                            href={task.deliverable_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-[#37429c] hover:underline mt-2 inline-block"
-                          >
-                            View Deliverable
-                          </a>
-                        )}
+                          <p className="text-xs text-slate-500 mt-1">
+                            Assigned: {formatDateTime(task.created_at)}
+                          </p>
+                          {task.due_date && (
+                            <p className="text-sm text-slate-500 mt-1">
+                              Due: {formatDate(task.due_date)}
+                            </p>
+                          )}
+                          {task.deliverable_link && (
+                            <a
+                              href={task.deliverable_link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-[#37429c] hover:underline mt-2 inline-block"
+                            >
+                              View Deliverable
+                            </a>
+                          )}
+                        </div>
+                        <Button
+                          data-testid={`update-task-button-${task.id}`}
+                          size="sm"
+                          className="bg-[#FF6F61] hover:bg-[#FF8A7F] text-white"
+                          onClick={() => handleOpenDialog(task)}
+                        >
+                          <Upload className="w-4 h-4 mr-2" />
+                          Update
+                        </Button>
                       </div>
-                      <Button
-                        data-testid={`update-task-button-${task.id}`}
-                        size="sm"
-                        className="bg-[#FF6F61] hover:bg-[#FF8A7F] text-white"
-                        onClick={() => handleOpenDialog(task)}
-                      >
-                        <Upload className="w-4 h-4 mr-2" />
-                        Update
-                      </Button>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </CardContent>
