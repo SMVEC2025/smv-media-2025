@@ -9,11 +9,12 @@
   font-size: 0.875rem;
   color: #1E293B;
   border-bottom: 2px solid #E2E8F0;
-  background-color: #F8FAFC;
+  background: linear-gradient(90deg, #f8fafc 0%, #eef2ff 100%);
 }
 
 .rbc-today {
-  background-color: #F0FDFA;
+  background-color: rgba(55, 66, 156, 0.08);
+  outline: 1px solid rgba(55, 66, 156, 0.35);
 }
 
 .rbc-off-range-bg {
@@ -30,11 +31,13 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
 }
 
 .rbc-event:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .rbc-event-label {
@@ -47,6 +50,7 @@
   background-color: white;
   border-radius: 8px;
   border: 1px solid #E2E8F0;
+  box-shadow: 0 6px 18px rgba(55, 66, 156, 0.08);
 }
 
 .rbc-toolbar button {
@@ -61,15 +65,16 @@
 }
 
 .rbc-toolbar button:hover {
-  background-color: #F1F5F9;
+  background-color: rgba(55, 66, 156, 0.08);
   border-color: #37429c;
 }
 
 .rbc-toolbar button:active,
 .rbc-toolbar button.rbc-active {
-  background-color: #37429c;
+  background: linear-gradient(135deg, #37429c 0%, #4c5bd1 100%);
   border-color: #37429c;
   color: white;
+  box-shadow: 0 8px 20px rgba(55, 66, 156, 0.25);
 }
 
 .rbc-toolbar-label {
@@ -83,6 +88,7 @@
   border: 1px solid #E2E8F0;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(55, 66, 156, 0.06);
 }
 
 .rbc-day-bg {
