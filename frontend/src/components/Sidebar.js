@@ -10,6 +10,7 @@ import {
   Camera, 
   Users, 
   Building2,
+  Lock,
   LogOut,
   Menu,
   X
@@ -46,6 +47,8 @@ const Sidebar = ({ isOpen, onClose }) => {
       { name: 'Users', icon: Users, path: '/users', testId: 'nav-users' },
       { name: 'Institutions', icon: Building2, path: '/institutions', testId: 'nav-institutions' },
     ] : []),
+    // All authenticated users
+    { name: 'Change Password', icon: Lock, path: '/change-password', testId: 'nav-change-password' }
   ];
 
   return (

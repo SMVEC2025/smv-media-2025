@@ -11,7 +11,7 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone, timedelta
 import bcrypt
-import jwt
+from jose import jwt
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -75,6 +75,10 @@ class LoginRequest(BaseModel):
 class LoginResponse(BaseModel):
     token: str
     user: UserResponse
+
+class ChangePasswordRequest(BaseModel):
+    old_password: str
+    new_password: str
 
 class InstitutionBase(BaseModel):
     name: str
@@ -288,6 +292,19 @@ async def login(input: LoginRequest):
 @api_router.get("/auth/me", response_model=UserResponse)
 async def get_me(current_user: dict = Depends(get_current_user)):
     return UserResponse(**current_user)
+
+@api_router.post("/auth/change-password")
+async def change_password(input: ChangePasswordRequest, current_user: dict = Depends(get_current_user)):
+    user = await db.users.find_one({"id": current_user["id"]})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    if not verify_password(input.old_password, user["password_hash"]):
+        raise HTTPException(status_code=400, detail="Old password is incorrect")
+
+    new_hash = hash_password(input.new_password)
+    await db.users.update_one({"id": current_user["id"]}, {"$set": {"password_hash": new_hash}})
+    return {"message": "Password updated successfully"}
 
 # ============================================================================
 # USER ROUTES

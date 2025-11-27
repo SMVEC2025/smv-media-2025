@@ -15,6 +15,7 @@ import CalendarView from './pages/CalendarView';
 import MyCalendar from './pages/MyCalendar';
 import Employees from './pages/Employees';
 import Tasks from './pages/Tasks';
+import ChangePassword from './pages/ChangePassword';
 import './App.css';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
@@ -145,6 +146,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute allowedRoles={['admin', 'media_head']}>
             <Tasks />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/change-password"
+        element={
+          <ProtectedRoute allowedRoles={['admin', 'media_head', 'team_member']}>
+            <ChangePassword />
           </ProtectedRoute>
         }
       />
