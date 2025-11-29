@@ -6,11 +6,13 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import MyTasks from './pages/MyTasks';
 import PublicDeliveries from './pages/PublicDeliveries';
+import PublicEvents from './pages/PublicEvents';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
 import Institutions from './pages/Institutions';
 import Equipment from './pages/Equipment';
 import Users from './pages/Users';
+import CreateUser from './pages/CreateUser';
 import CalendarView from './pages/CalendarView';
 import MyCalendar from './pages/MyCalendar';
 import Employees from './pages/Employees';
@@ -50,6 +52,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/deliveries" element={<PublicDeliveries />} />
+      <Route path="/public-events" element={<PublicEvents />} />
       
       <Route
         path="/dashboard"
@@ -101,6 +104,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute allowedRoles={['admin']}>
             <Equipment />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/create-user"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <CreateUser />
           </ProtectedRoute>
         }
       />

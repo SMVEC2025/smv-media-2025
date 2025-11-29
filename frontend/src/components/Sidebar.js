@@ -10,6 +10,7 @@ import {
   Camera, 
   Users, 
   Building2,
+  UserPlus,
   Lock,
   LogOut,
   Menu,
@@ -44,6 +45,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     // Admin only items
     ...(isAdmin ? [
       { name: 'Equipment', icon: Camera, path: '/equipment', testId: 'nav-equipment' },
+      { name: 'Create User', icon: UserPlus, path: '/create-user', testId: 'nav-create-user' },
       { name: 'Users', icon: Users, path: '/users', testId: 'nav-users' },
       { name: 'Institutions', icon: Building2, path: '/institutions', testId: 'nav-institutions' },
     ] : []),

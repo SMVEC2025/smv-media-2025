@@ -146,6 +146,11 @@ class TaskResponse(Task):
     institution_name: Optional[str] = None
     assigned_to_name: Optional[str] = None
 
+class ManualDeliverableCreate(BaseModel):
+    deliverable_link: str
+    type: str = "other"  # photo, video, editing, other
+    comments: Optional[str] = None
+
 class EquipmentBase(BaseModel):
     name: str
     code: Optional[str] = None
@@ -179,7 +184,9 @@ class EquipmentAllocationResponse(EquipmentAllocation):
     event_title: Optional[str] = None
 
 class DeliverablePublic(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     id: str
+    event_id: Optional[str] = None
     event_title: str
     institution_name: str
     event_date: datetime
@@ -211,6 +218,19 @@ class DashboardStats(BaseModel):
     overdue_tasks: int
     total_events: int
     total_tasks: int
+
+class PublicEvent(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str
+    title: str
+    institution_id: str
+    institution_name: Optional[str] = None
+    event_date_start: datetime
+    event_date_end: Optional[datetime] = None
+    venue: Optional[str] = None
+    department: Optional[str] = None
+    priority: str = "normal"
+    status: str = "event_created"
 
 # ============================================================================
 # AUTH HELPERS
@@ -449,6 +469,39 @@ async def get_events(
     
     return events
 
+@api_router.get("/events/public", response_model=List[PublicEvent])
+async def get_events_public(
+    institution_id: Optional[str] = None,
+    year: Optional[int] = None,
+    month: Optional[int] = None
+):
+    """Public, read-only list of events for showcase pages"""
+    query = {}
+    if institution_id:
+        query["institution_id"] = institution_id
+
+    events = await db.events.find(query, {"_id": 0}).sort("event_date_start", -1).to_list(1000)
+
+    public_events = []
+    for event in events:
+        if isinstance(event.get('event_date_start'), str):
+            event['event_date_start'] = datetime.fromisoformat(event['event_date_start'])
+        if event.get('event_date_end') and isinstance(event['event_date_end'], str):
+            event['event_date_end'] = datetime.fromisoformat(event['event_date_end'])
+
+        if year and event['event_date_start'].year != int(year):
+            continue
+        if month and event['event_date_start'].month != int(month):
+            continue
+
+        inst = await db.institutions.find_one({"id": event["institution_id"]}, {"_id": 0})
+        event["institution_name"] = inst["name"] if inst else None
+
+        public_events.append(PublicEvent(**event))
+
+    public_events.sort(key=lambda e: e.event_date_start, reverse=True)
+    return public_events
+
 @api_router.post("/events", response_model=Event)
 async def create_event(input: EventCreate, current_user: dict = Depends(require_role(["admin", "media_head"]))):
     event_dict = input.model_dump()
@@ -606,6 +659,33 @@ async def create_task(input: TaskCreate, current_user: dict = Depends(require_ro
     if task_dict.get('due_date'):
         task_dict['due_date'] = datetime.fromisoformat(task_dict['due_date'])
     
+    return Task(**task_dict)
+
+@api_router.post("/events/{event_id}/deliverables", response_model=Task)
+async def create_manual_deliverable(
+    event_id: str,
+    input: ManualDeliverableCreate,
+    current_user: dict = Depends(require_role(["admin", "media_head"]))
+):
+    event = await db.events.find_one({"id": event_id})
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+
+    task_dict = {
+        "id": str(uuid.uuid4()),
+        "event_id": event_id,
+        "type": input.type,
+        "assigned_to": current_user["id"],
+        "due_date": None,
+        "status": "completed",
+        "deliverable_link": input.deliverable_link,
+        "comments": input.comments,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+
+    await db.tasks.insert_one(task_dict)
+
+    task_dict['created_at'] = datetime.fromisoformat(task_dict['created_at'])
     return Task(**task_dict)
 
 @api_router.get("/tasks/{task_id}", response_model=TaskResponse)
@@ -795,6 +875,7 @@ async def get_public_deliveries(
         
         deliverables.append({
             "id": task["id"],
+            "event_id": task["event_id"],
             "event_title": event["title"],
             "institution_name": inst["name"] if inst else "Unknown",
             "event_date": datetime.fromisoformat(event["event_date_start"]) if isinstance(event.get('event_date_start'), str) else event.get('event_date_start'),

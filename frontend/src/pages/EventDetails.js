@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
 import ConfirmDialog from '../components/ConfirmDialog';
 import api, { getStatusColor, getPriorityColor, getTaskTypeColor, formatDate } from '../utils/api';
@@ -17,6 +18,7 @@ import { toast } from 'sonner';
 const EventDetails = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
+  const { isAdmin, isMediaHead } = useAuth();
   const [event, setEvent] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [equipmentAllocations, setEquipmentAllocations] = useState([]);
@@ -26,12 +28,18 @@ const EventDetails = () => {
   const [isTaskDialogOpen, setIsTaskDialogOpen] = useState(false);
   const [isEquipmentDialogOpen, setIsEquipmentDialogOpen] = useState(false);
   const [isStatusDialogOpen, setIsStatusDialogOpen] = useState(false);
+  const [isDeliverableDialogOpen, setIsDeliverableDialogOpen] = useState(false);
   const [deleteTaskDialogOpen, setDeleteTaskDialogOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [newTask, setNewTask] = useState({
     type: 'photo',
     assigned_to: '',
     due_date: '',
+    comments: ''
+  });
+  const [newDeliverable, setNewDeliverable] = useState({
+    deliverable_link: '',
+    type: 'photo',
     comments: ''
   });
   const [newEquipment, setNewEquipment] = useState({
@@ -107,6 +115,24 @@ const EventDetails = () => {
       fetchData();
     } catch (error) {
       toast.error('Failed to allocate equipment', {
+        description: error.response?.data?.detail || 'Please try again'
+      });
+    }
+  };
+
+  const handleAddDeliverable = async () => {
+    if (!newDeliverable.deliverable_link) {
+      toast.error('Please add the deliverable link');
+      return;
+    }
+    try {
+      await api.post(`/events/${eventId}/deliverables`, newDeliverable);
+      toast.success('Deliverable added');
+      setIsDeliverableDialogOpen(false);
+      setNewDeliverable({ deliverable_link: '', type: 'photo', comments: '' });
+      fetchData();
+    } catch (error) {
+      toast.error('Failed to add deliverable', {
         description: error.response?.data?.detail || 'Please try again'
       });
     }
@@ -336,7 +362,19 @@ const EventDetails = () => {
             {/* Deliverables */}
             <Card>
               <CardHeader>
-                <CardTitle>Deliverables ({completedTasks.length})</CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle>Deliverables ({completedTasks.length})</CardTitle>
+                  {(isAdmin || isMediaHead) && (
+                    <Button
+                      size="sm"
+                      className="bg-[#37429c] hover:bg-[#b49749] text-white"
+                      onClick={() => setIsDeliverableDialogOpen(true)}
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Add Deliverable
+                    </Button>
+                  )}
+                </div>
               </CardHeader>
               <CardContent>
                 {completedTasks.length === 0 ? (
@@ -551,6 +589,67 @@ const EventDetails = () => {
               onClick={handleAllocateEquipment}
             >
               Allocate
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Deliverable Dialog */}
+      <Dialog open={isDeliverableDialogOpen} onOpenChange={setIsDeliverableDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Add Deliverable</DialogTitle>
+            <CardDescription>Add a deliverable link without assigning a task.</CardDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div>
+              <Label>Deliverable Type</Label>
+              <Select
+                value={newDeliverable.type}
+                onValueChange={(value) => setNewDeliverable({ ...newDeliverable, type: value })}
+              >
+                <SelectTrigger className="mt-2">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="photo">Photography</SelectItem>
+                  <SelectItem value="video">Videography</SelectItem>
+                  <SelectItem value="editing">Editing</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <Label>Deliverable Link</Label>
+              <Input
+                className="mt-2"
+                placeholder="https://..."
+                value={newDeliverable.deliverable_link}
+                onChange={(e) => setNewDeliverable({ ...newDeliverable, deliverable_link: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <Label>Notes (optional)</Label>
+              <Textarea
+                rows={3}
+                className="mt-2"
+                placeholder="Any context to share..."
+                value={newDeliverable.comments}
+                onChange={(e) => setNewDeliverable({ ...newDeliverable, comments: e.target.value })}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setIsDeliverableDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              className="bg-[#37429c] hover:bg-[#b49749] text-white"
+              onClick={handleAddDeliverable}
+            >
+              Add Deliverable
             </Button>
           </DialogFooter>
         </DialogContent>

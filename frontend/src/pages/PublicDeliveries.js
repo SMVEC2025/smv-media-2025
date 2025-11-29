@@ -57,10 +57,20 @@ const PublicDeliveries = () => {
       {/* Header */}
       <header className="bg-white border-b border-slate-200 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-slate-900 font-heading">Our Work</h1>
-          <p className="text-slate-600 mt-2 text-lg">
-            Showcasing our media team's delivered projects
-          </p>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div>
+              <h1 className="text-4xl font-bold text-slate-900 font-heading">Our Work</h1>
+              <p className="text-slate-600 mt-2 text-lg">
+                Showcasing our media team's delivered projects
+              </p>
+            </div>
+            <button
+              onClick={() => (window.location.href = '/public-events')}
+              className="inline-flex items-center justify-center rounded-lg bg-[#37429c] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#2f387f] transition-colors"
+            >
+              Browse Events
+            </button>
+          </div>
         </div>
       </header>
 
