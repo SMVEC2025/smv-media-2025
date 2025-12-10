@@ -14,6 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Textarea } from '../components/ui/textarea';
 import { Calendar, ArrowLeft, Plus, Edit, Users, Camera, Package, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
+import SingleDateTimePicker from './SingleDateTimePicker';
 
 const EventDetails = () => {
   const { eventId } = useParams();
@@ -60,7 +61,7 @@ const EventDetails = () => {
         api.get(`/team-members`),  // Changed from /users to /team-members
         api.get(`/equipment`)
       ]);
-      
+
       setEvent(eventRes.data);
       setTasks(tasksRes.data);
       setEquipmentAllocations(allocationsRes.data);
@@ -198,7 +199,7 @@ const EventDetails = () => {
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Events
           </Button>
-          
+
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
@@ -259,7 +260,7 @@ const EventDetails = () => {
                     </div>
                   )}
                 </div>
-                
+
                 {event.description && (
                   <div>
                     <p className="text-sm text-slate-600">Description</p>
@@ -466,7 +467,7 @@ const EventDetails = () => {
 
       {/* Assign Task Dialog */}
       <Dialog open={isTaskDialogOpen} onOpenChange={setIsTaskDialogOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-[700px] ">
           <DialogHeader>
             <DialogTitle>Assign Task</DialogTitle>
           </DialogHeader>
@@ -508,7 +509,7 @@ const EventDetails = () => {
               </Select>
             </div>
 
-            <div>
+            {/* <div>
               <Label>Due Date</Label>
               <Input
                 type="datetime-local"
@@ -516,7 +517,23 @@ const EventDetails = () => {
                 value={newTask.due_date}
                 onChange={(e) => setNewTask({ ...newTask, due_date: e.target.value })}
               />
+            </div> */}
+            <div>
+              <Label>Due Date</Label>
+
+              <SingleDateTimePicker
+                label="Due Date"
+                value={newTask.due_date}
+                onChange={(val) =>
+                  setNewTask({
+                    ...newTask,
+                    due_date: val.value,   // <-- val.value = "YYYY-MM-DDTHH:mm"
+                    due_date_obj: val.date // optional but useful
+                  })
+                }
+              />
             </div>
+
 
             <div>
               <Label>Comments</Label>
@@ -666,11 +683,10 @@ const EventDetails = () => {
               <button
                 key={status}
                 onClick={() => handleStatusChange(status)}
-                className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
-                  event.status === status
-                    ? 'border-[#37429c] bg-[#37429c]/10'
-                    : 'border-slate-200 hover:border-[#37429c]'
-                }`}
+                className={`w-full p-3 rounded-lg border-2 text-left transition-all ${event.status === status
+                  ? 'border-[#37429c] bg-[#37429c]/10'
+                  : 'border-slate-200 hover:border-[#37429c]'
+                  }`}
               >
                 <Badge className={`${getStatusColor(status)} text-white text-xs mb-1`}>
                   {status.replace('_', ' ')}

@@ -53,7 +53,7 @@ const MyTasks = () => {
 
   const handleUpdateTask = async () => {
     if (updating) return; // Prevent double-click
-    
+
     try {
       setUpdating(true);
       await api.put(`/tasks/${selectedTask.id}`, {
@@ -190,7 +190,10 @@ const MyTasks = () => {
                           </div>
                           <h3 className="font-semibold text-slate-900">{eventTitle}</h3>
                           <p className="text-sm text-slate-600 mt-1">
-                            {institution} - {eventDate}
+                            {institution}
+                          </p>
+                          <p className="text-sm text-slate-600 mt-1">
+                            {task?.comments || 'No comments'}
                           </p>
                           <p className="text-xs text-slate-500 mt-1">
                             Assigned: {formatDateTime(task.created_at)}

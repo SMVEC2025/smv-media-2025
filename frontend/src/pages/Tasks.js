@@ -12,6 +12,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Calendar, Eye, Trash2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'sonner';
+import SingleDateTimePicker from './SingleDateTimePicker';
 
 const Tasks = () => {
   const { isAdmin, isMediaHead } = useAuth();
@@ -420,10 +421,22 @@ const Tasks = () => {
 
               <div className="space-y-2">
                 <Label>Due Date</Label>
-                <Input
+                {/* <Input
                   type="date"
                   value={newTask.due_date}
                   onChange={(e) => setNewTask({ ...newTask, due_date: e.target.value })}
+                /> */}
+
+                <SingleDateTimePicker
+                  label="Due Date"
+                  value={newTask.due_date}
+                  onChange={(val) =>
+                    setNewTask({
+                      ...newTask,
+                      due_date: val.value,   // <-- val.value = "YYYY-MM-DDTHH:mm"
+                      due_date_obj: val.date // optional but useful
+                    })
+                  }
                 />
               </div>
 

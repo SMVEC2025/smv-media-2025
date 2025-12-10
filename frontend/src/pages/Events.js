@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Textarea } from '../components/ui/textarea';
 import { Calendar, Plus, Filter, Search, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
+import OwnDateTimePicker from './OwnDateTimePicker';
 
 const Events = () => {
   const location = useLocation();
@@ -71,17 +72,17 @@ const Events = () => {
         api.get('/institutions')
       ]);
       let eventsData = eventsRes.data;
-      
+
       // Apply search filter on frontend
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
-        eventsData = eventsData.filter(e => 
+        eventsData = eventsData.filter(e =>
           e.title.toLowerCase().includes(searchLower) ||
           e.institution_name?.toLowerCase().includes(searchLower) ||
           e.venue?.toLowerCase().includes(searchLower)
         );
       }
-      
+
       setEvents(eventsData);
       setInstitutions(institutionsRes.data);
     } catch (error) {
@@ -95,7 +96,7 @@ const Events = () => {
 
   const handleCreateEvent = async () => {
     if (creating) return; // Prevent double-click
-    
+
     try {
       // Validate required fields
       if (!newEvent.title || !newEvent.institution_id || !newEvent.event_date_start) {
@@ -122,8 +123,8 @@ const Events = () => {
       resetForm();
       fetchData();
     } catch (error) {
-      const errorMessage = typeof error.response?.data?.detail === 'string' 
-        ? error.response.data.detail 
+      const errorMessage = typeof error.response?.data?.detail === 'string'
+        ? error.response.data.detail
         : 'Please check all required fields and try again';
       toast.error('Failed to create event', {
         description: errorMessage
@@ -327,11 +328,11 @@ const Events = () => {
                       {event.priority.toUpperCase()}
                     </Badge>
                   </div>
-                  
+
                   <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-[#37429c] transition-colors">
                     {event.title}
                   </h3>
-                  
+
                   <div className="space-y-2 text-sm text-slate-600">
                     <p className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
@@ -356,7 +357,7 @@ const Events = () => {
                       )}
                     </div>
                   )}
-                  
+
                   <div className="mt-4 pt-4 border-t border-slate-200">
                     <Button
                       data-testid={`delete-event-button-${event.id}`}
@@ -434,7 +435,7 @@ const Events = () => {
             </div>
 
             {/* Date and Time */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="event_date_start" className="text-sm font-medium text-slate-700">
                   Event Date <span className="text-red-500">*</span>
@@ -457,6 +458,30 @@ const Events = () => {
                   className="mt-2"
                   value={newEvent.event_date_end}
                   onChange={(e) => setNewEvent({ ...newEvent, event_date_end: e.target.value })}
+                />
+              </div>
+            </div> */}
+            {/* Date and Time */}
+            <div>
+              <Label className="text-sm font-medium text-slate-700">
+                Event Duration <span className="text-red-500">*</span>
+              </Label>
+              <p className="text-xs text-slate-500 mt-1">
+                Select start and (optional) end date & time in a single field.
+              </p>
+              <div className="mt-2 border rounded-md p-3">
+                <OwnDateTimePicker
+                  value={{
+                    from: newEvent.event_date_start ? new Date(newEvent.event_date_start) : null,
+                    to: newEvent.event_date_end ? new Date(newEvent.event_date_end) : null,
+                  }}
+                  onChange={({ from, to }) => {
+                    setNewEvent((prev) => ({
+                      ...prev,
+                      event_date_start: from ? from.toISOString() : '',
+                      event_date_end: to ? to.toISOString() : '',
+                    }));
+                  }}
                 />
               </div>
             </div>
