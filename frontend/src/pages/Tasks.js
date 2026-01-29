@@ -388,6 +388,7 @@ const Tasks = () => {
                       <SelectItem value="photo">Photo</SelectItem>
                       <SelectItem value="video">Video</SelectItem>
                       <SelectItem value="editing">Editing</SelectItem>
+                      <SelectItem value="reels">Reels</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
